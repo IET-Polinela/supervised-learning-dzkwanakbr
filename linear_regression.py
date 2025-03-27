@@ -2,8 +2,13 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
+
+# Membuat folder untuk menyimpan visualisasi jika belum ada
+visualisasi_folder = "visualisasi_linear"
+os.makedirs(visualisasi_folder, exist_ok=True)
 
 # Load dataset
 file_with_outliers = "data_with_outliers.csv"
@@ -54,8 +59,7 @@ def linear_regression(X, Y, label):
     plt.ylabel("Predicted SalePrice")
     plt.title(f"Linear Regression {label}")
     
-    # Simpan hasil visualisasi
-    filename = f"linear_regression_{label.lower()}.png"
+    filename = os.path.join(visualisasi_folder, f"linear_regression_{label.lower()}.png")
     plt.savefig(filename)
     plt.show()
 
@@ -68,7 +72,7 @@ def linear_regression(X, Y, label):
     plt.ylabel("Residuals")
     plt.title(f"Residual Plot {label}")
     
-    filename = f"residual_plot_{label.lower()}.png"
+    filename = os.path.join(visualisasi_folder, f"linear_residual_plot_{label.lower()}.png")
     plt.savefig(filename)
     plt.show()
 
@@ -79,7 +83,7 @@ def linear_regression(X, Y, label):
     plt.ylabel("Frequency")
     plt.title(f"Residual Distribution {label}")
 
-    filename = f"residual_distribution_{label.lower()}.png"
+    filename = os.path.join(visualisasi_folder, f"linear_residual_distribution_{label.lower()}.png")
     plt.savefig(filename)
     plt.show()
 
